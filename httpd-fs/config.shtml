@@ -1,0 +1,122 @@
+</html>
+<head>
+<meta charset="windows-1251">
+<title>Конфигурация устройства.</title>
+</head>
+
+<style type="text/css">
+    table {
+     border-collapse: collapse; /* Отображать двойные линии как одинарные */
+    }
+    th {
+     background: #ccc; /* Цвет фона */
+     text-align: center; /* Выравнивание по центру */
+    }
+    td, th {
+     border: 1px solid #800; /* Параметры границы */
+     padding: 2px; /* Поля в ячейках */
+    }
+    .id_ipaddr {
+     width:50Px;
+    }
+    .id_w1 {
+     width:200Px;
+    }
+    .id_w2 {
+     width:215Px;
+    }
+    .id_w3 {
+     width:50Px;
+    }
+    .id_w4 {
+     width:225Px;
+    }
+    .id_w5 {
+     width:135Px;
+    }
+    .id_w6 {
+     width:80Px;
+    }
+  </style>
+
+
+<center>
+
+<body>
+ <h1>Конфигурация устройства.</h1>
+    <form>
+        <input type="button" style="width:180Px;height:40Px" value="< Назад в главное меню" onclick="location.href='index.shtml'"/>
+    </form>
+
+%! cfg_mac
+
+%! cfg_get
+<br>
+
+%! cfg_ip
+
+<br>
+
+<form action='/config.shtml' method='GET'>
+<table>
+ <tr>
+ <th class="id_w1"> Описание устройства:</th>
+ <td><input type="text" name="txt" class="id_w2" value="%! cfg_txt
+"></td>
+ <td><input type="submit" value="Сохранить"></td>
+ </tr>
+</table>
+</form>
+
+<br>
+
+<table>
+<caption>Описание назначения/подключений для аналоговых Входов.</caption>
+ <tr>
+ <th class="id_w3">Вход</th>
+ <th class="id_w3">Множ.</th>
+ <th class="id_w3">Делит.</th>
+ <th class="id_w3">K=Множ./Делит.</th>
+ <th class="id_w3">Описание</th>
+ <th class="id_w3">Сохранить</th>
+ </tr>
+
+%! cfg_adc
+</table>
+
+<br>
+
+<table border="1">
+<tr>
+<td>
+
+<table>
+<caption>Описание назначения/подключений для цифровых Входов.</caption>
+ <tr>
+ <th class="id_w3">Вход</th>
+ <th class="id_w3">Описание</th>
+ <th class="id_w3">Сохранить</th>
+ </tr>
+
+%! cfg_i
+</table>
+
+</td>
+<td>
+
+<table>
+<caption>Описание назначения/подключений для цифровых ВЫходов.</caption>
+ <tr>
+ <th class="id_w3">Вход</th>
+ <th class="id_w3">Описание</th>
+ <th class="id_w3">Сохранить</th>
+ </tr>
+
+%! cfg_o
+</table>
+
+</td>
+</tr>
+
+</body>
+</html>

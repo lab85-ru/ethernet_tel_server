@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta charset="windows-1251">
+<title>Главная страница</title>
+</head>
+
+<style type="text/css">
+    table {
+     border-collapse: collapse; /* Отображать двойные линии как одинарные */
+    }
+    th {
+     background: #ccc; /* Цвет фона */
+     text-align: center; /* Выравнивание по центру */
+    }
+    td, th {
+     border: 1px solid #800; /* Параметры границы */
+     padding: 2px; /* Поля в ячейках */
+    }
+  </style>
+
+<center>
+<body>
+    <h1>Ethernet Server</h1>
+    <h3>Система дистанционного управления <br>
+        и сбора телеметрическй информации.</h3>
+    <table border="1">
+    <tr><th><h2>Меню</h2></th></tr>
+
+    <tr>
+    <th> 
+    <form>
+        <input type="button" style="width:250Px;height:50Px" value="Текущее состояние входов/выходов" onclick="location.href='status_io.shtml'"/>
+    </form>
+    </th>
+    </tr>
+
+    <tr>
+    <th> 
+    <form>
+        <input type="button" style="width:250Px;height:50Px" value="Изменение состояния выходов" onclick="location.href='set_out.shtml'"/>
+    </form>
+    </th>
+    </tr>
+
+    <tr>
+    <th>
+    <form>
+        <input type="button" style="width:250Px;height:50Px" value="Конфигурация устройства" onclick="location.href='config.shtml'"/>
+    </form>
+    </th>
+    </tr>
+    </table>
+
+%! ver_dev
+
+</body>
+</html>

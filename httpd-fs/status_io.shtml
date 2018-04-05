@@ -1,0 +1,81 @@
+<html>
+<head>
+<meta charset="windows-1251">
+<title>Состояние Входов/ВЫходов.</title>
+</head>
+
+<style type="text/css">
+    table {
+     border-collapse: collapse; /* Отображать двойные линии как одинарные */
+    }
+    th {
+     background: #ccc; /* Цвет фона */
+     text-align: center; /* Выравнивание по центру */
+    }
+    td, th {
+     border: 1px solid #800; /* Параметры границы */
+     padding: 4px; /* Поля в ячейках */
+    }
+  </style>
+
+<center>
+	<body>
+	<h1>Состояние Входов/ВЫходов.</h1>
+
+    <form>
+        <input type="button" style="width:180Px;height:40Px" value="< Назад в главное меню" onclick="location.href='index.shtml'"/>
+        <input type="button" style="width:230Px;height:40Px" value="Изменение состояния выходов >" onclick="location.href='set_out.shtml'"/>
+    </form>
+
+<br>
+
+<table border="1">
+<caption>Аналоговые Входы</caption>
+
+ <tr>
+ <th>№</th><th>U вх.АЦП</th><th>* K</th><th>U дел.</th><th style="width:250Px;">Описание</th>
+ </tr>
+
+%! status_adc
+
+</table>
+
+<br>
+
+<table border="1">
+<tr>
+<td>
+
+<table border="1">
+<caption>Цифровые Входы</caption>
+
+ <tr>
+ <th>№</th><th>Знач.</th><th style="width:250Px;">Описание</th>
+ </tr>
+
+%! status_i
+<tr>
+ <th colspan="4">1 - Вх.= +Vin, 0 - Вх.= 0 v</th>
+</tr>
+
+</table>
+</td>
+<td>
+
+<table border="1">
+<caption>Цифровые ВЫходы</caption>
+
+ <tr>
+ <th>№</th><th>Знач.</th><th style="width:250Px;">Описание</th>
+ </tr>
+
+%! status_o
+<tr>
+ <th colspan="4">1-Замкнут, 0-Разомкнут</th>
+</tr>
+
+</table>
+</td>
+</tr>
+
+</html>

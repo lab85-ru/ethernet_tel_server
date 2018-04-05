@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta charset="windows-1251">
+<title>Состояние Входов/ВЫходов.</title>
+</head>
+
+<style type="text/css">
+    table {
+     border-collapse: collapse; /* Отображать двойные линии как одинарные */
+    }
+    th {
+     background: #ccc; /* Цвет фона */
+     text-align: center; /* Выравнивание по центру */
+    }
+    td, th {
+     border: 1px solid #800; /* Параметры границы */
+     padding: 2px; /* Поля в ячейках */
+    }
+  </style>
+
+<center>
+<body>
+	<h1>Состояние Входов/ВЫходов.</h1>
+
+    <form>
+        <input type="button" style="width:180Px;height:40Px" value="< Назад в главное меню" onclick="location.href='index.shtml'"/>
+    </form>
+
+<br>
+
+<table border="1">
+<caption>Аналоговые Входы</caption>
+
+ <tr>
+ <th>№</th><th>U вх.АЦП</th><th>* K</th><th>U дел.</th><th style="width:250Px;">Описание</th> 
+ </tr>
+
+%! status_adc
+
+</table>
+
+<br>
+
+<table border="1">
+<caption>Цифровые Входы</caption>
+
+ <tr>
+ <th>№</th><th>Знач.</th><th style="width:250Px;">Описание</th>
+ </tr>
+
+%! status_i
+
+</table>
+
+<br>
+
+<form action='/set_out.shtml' method='GET'>
+<table border="1">
+<caption>Цифровые ВЫходы</caption>
+
+ <tr>
+ <th>№</th><th>Знач.</th><th style="width:250Px;">Описание</th><th>Уст.</th>
+ </tr>
+
+%! set_o
+
+<tr>
+ <th colspan="3">Очистка, сброс в состояние 0 всех выходов<br>1-Замкнут, 0-Разомкнут</th><th><input type="checkbox" name="o_clr" value="1"></th>
+</tr>
+
+</table>
+
+<p><input type="submit" value="Изменить состояние выходов"></p>
+</form>
+
+
+</html>
