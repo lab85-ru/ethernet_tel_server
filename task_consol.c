@@ -31,7 +31,7 @@ extern void task_list( void );
 extern struct queue_buffer consol_rx;
 extern const char *git_commit_str;
 
-int ip_test(char *str);
+int ip_test(const char * s);
 void print_byte_to_bit(uint8_t b);
 
 
@@ -274,76 +274,68 @@ void vTaskConsol( void *pvParameters )
 
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// test ascii IP
-// proveraem vhodnuu stroku IP na sootvestvie formatu 123.456.789.321
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-int ip_test(char *str)
+//------------------------------------------------------------------------------
+// test s - string for 111.222.333.444
+//
+// return 0  -> IP OK
+// return !0 -> IP ERROR
+//
+//------------------------------------------------------------------------------
+int ip_test(const char * s)
 {
-enum{s1,s2,s3,s4} sst;
-unsigned char i = 0;
-unsigned char k = 0;
-unsigned char ch;
 
-//printf("str=%s strlen=%d\n",str,strlen(str));
-	if ( strlen(str) > 15) return -1;// error IP format
-// proverka vhodenia tolko chifri & '.'
-	i=0;
-	while( (ch=*(str+i)) != 0 ){
-		//printf("char=%x\n",ch);
-		if ( ((ch >= '0') && (ch <= '9')) || (ch == '.') ) i++;
-		else return -1;
-	}
-//printf("automat start\n");
+    size_t len = 0;    // strlen(s)
+    size_t i = 0;      // index
+    size_t m = 0;      // index for st
+    char c;            // char from S
+    int t = 0;         // kolichestvo tochek
+    char st[4];        // sobiraem stroku dla convertachii str->int
+    int n = 0;         // n = atoi(st)
 
-	i = 0;
-	k = 0;
-	sst = s1;
 
-	while( (ch=*(str+i)) != 0 ){
-		//printf("char=%c\n",ch);
-		switch(sst){
-			case s1:
-				//printf("s1\n");
-				if (k > 3) return -1;// error IP format
-				if ((ch == '.') && (k >= 2)){
-					k = 0;
-					sst = s2;
-				} else k++;
-			i++;
-			break;
+    // string to NULL
+    if (s == 0) return 1;
+    len = strlen(s);
 
-			case s2:
-			//printf("s2\n");
-				if (k > 3) return -1;// error IP format
-				if ((ch == '.') && (k >= 1)){
-					k = 0;
-					sst = s3;
-				} else k++;
-			i++;
-			break;
+    // string LEN = 0
+    if (len == 0) return 1;
+    // string LEN > 192.168.130.100
+    if (len > 15) return 1;
 
-			case s3:
-			//printf("s3\n");
-				if (k > 3) return -1;// error IP format
-				if ((ch == '.') && (k >= 1)){
-					k = 0;
-					sst = s3;
-				} else k++;
-			i++;
-			break;
+    i = 0;
+    while( 1 ){
+        c = *(s + i);
+        // esli Ne chislo i ne Tochka -> error
+        if ( !(c >= 0x30 && c <= 0x39) && c != '.' && c != 0) return 1;
 
-			case s4:
-			//printf("s4\n");
-				if (k > 3) return -1;// error IP format
-				if (ch == '.') return -1;// error IP format
-				else k++;
-			i++;
-			break;
-		}
+        if (c >= 0x30 && c <= 0x39){
+            if (m == 3) return 2;    // eto budet 4 chislo -> error
 
-	}
-	return 0;
+            st[m] = c;
+            m++;
+            st[m] = 0;
+        }
+
+        if (c == '.' || c == 0){
+
+            if (m == 0) return 3;  // poluchili podrad vtoruu Tochku -> error
+
+            n = atoi(st);
+            if (n > 255) return 4;
+            st[0] = 0;
+
+            m = 0;
+
+            if (c == 0) break; 
+            else t++;
+        }
+
+        i++;
+    }
+
+    if (t != 3) return 5;
+
+    return 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
