@@ -43,7 +43,7 @@ extern char txt_buf[];
 //-----------------------------------------------------------------------------
 int calc_volt_rdiv(char *buf, const int adc_in, const int k1, const int k2, const int mu, const int di)
 {
-    long long r1,r2,r3,r4;
+    long int r1,r2,r3,r4;
 
     if (k2 == 0 || di == 0){
         sprintf(buf, "---");
@@ -62,7 +62,7 @@ int calc_volt_rdiv(char *buf, const int adc_in, const int k1, const int k2, cons
     r4 = (r4 * 100) / r2;// дробная часть после запятой
     if(DEBUG) printf("r42=%d\n", r4);
 
-    sprintf(buf, "%d,%d", (int)r3, (int)r4);
+    sprintf(buf, "%d,%02d", r3, r4);
 
     return 0;
 }
